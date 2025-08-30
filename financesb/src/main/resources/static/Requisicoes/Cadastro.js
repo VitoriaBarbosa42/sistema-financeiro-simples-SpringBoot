@@ -40,8 +40,8 @@ document.getElementById('form-cadastro').addEventListener('submit', function(eve
             document.getElementById('form-cadastro').reset();
         })
         .catch((error) => {
-            console.error('Erro ao cadastrar:', error);
-            mensagemDiv.textContent = `Erro: ${error.message}`;
+            console.error(error);
+            mensagemDiv.textContent = `Erro: Dados Invalidos`
             mensagemDiv.style.color = 'red';
         });
 });
