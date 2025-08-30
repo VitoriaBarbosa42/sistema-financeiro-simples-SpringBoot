@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário - Sistema Financeiro</title>
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --primary-orange: #FFD700; /* Laranja um pouco mais vibrante para detalhes */
+            --light-orange: #FFF8E1; /* Laranja bem claro para o fundo */
+            --dark-gray: #333333; /* Preto mais suave para textos e fundo geral */
+            --text-color: #EEEEEE; /* Texto claro para contraste com o fundo escuro */
+            --input-bg: #444444; /* Fundo dos inputs */
+            --border-color: #666666; /* Cor da borda */
+            --button-bg: #FF8C00; /* Laranja médio para o botão */
+            --button-hover: #FFA500; /* Laranja mais claro no hover */
+            --error-color: #FF4444; /* Vermelho para mensagens de erro */
+        }
+
+        /* Estilos Gerais do Corpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--dark-gray); /* Fundo geral escuro */
+            color: var(--text-color); /* Cor do texto padrão */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ocupa a altura total da viewport */
+            box-sizing: border-box; /* Inclui padding na altura */
+        }
+
+        /* Container do Formulário */
+        .form-container {
+            background-color: var(--light-orange); /* Fundo do formulário laranja claro */
+            padding: 40px 50px; /* Mais padding para deixá-lo maior */
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Sombra mais forte */
+            width: 100%;
+            max-width: 500px; /* Largura máxima para formulários maiores */
+            box-sizing: border-box;
+            color: var(--dark-gray); /* Texto dentro do formulário é escuro */
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--button-bg); /* Título em laranja */
+            margin-bottom: 30px;
+            font-size: 2.2em; /* Título maior */
+        }
+
+        /* Estilos dos Grupos de Input */
+        .form-group {
+            margin-bottom: 25px; /* Espaçamento entre os campos */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 1.1em; /* Labels maiores */
+            color: var(--dark-gray);
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: calc(100% - 20px); /* Largura total menos padding */
+            padding: 14px 10px; /* Inputs maiores */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--input-bg); /* Fundo dos inputs escuro */
+            color: var(--text-color);
+            font-size: 1.05em; /* Texto do input maior */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: var(--primary-orange); /* Borda laranja no foco */
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3); /* Sombra de foco laranja */
+            outline: none;
+        }
+
+        /* Estilo do Botão */
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px 20px; /* Botão maior */
+            background-color: var(--button-bg); /* Cor do botão laranja */
+            color: var(--text-color); /* Texto do botão claro */
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em; /* Texto do botão maior */
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--button-hover); /* Laranja mais claro no hover */
+            transform: translateY(-2px); /* Efeito de levantar no hover */
+        }
+
+        /* Mensagens de Feedback */
+        #mensagem {
+            margin-top: 25px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.2); /* Fundo semitransparente para a mensagem */
+        }
+        #mensagem.success {
+            color: #4CAF50; /* Verde para sucesso */
+        }
+        #mensagem.error {
+            color: var(--error-color); /* Vermelho para erro */
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>Formulário de Cadastro do Usuário</h1>
+
+    <form id="form-cadastro">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div class="form-group">
+            <label for="sobrenome">Sobrenome:</label>
+            <input type="text" id="sobrenome" name="sobrenome" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="mensagem"></div>
+</div>
+
+<script src="Cadastro.js"></script>
+</body>
+</html>
