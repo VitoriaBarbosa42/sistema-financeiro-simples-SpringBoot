@@ -1,8 +1,14 @@
 package br.com.system.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class CadastroUsuarioDTO {
 
     @NotBlank(message = "Campo não pode ser nulo")
@@ -22,31 +28,4 @@ public class CadastroUsuarioDTO {
     @Email(message = "Digite um email valido")
     private String email;
 
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

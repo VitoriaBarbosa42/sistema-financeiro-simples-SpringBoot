@@ -1,10 +1,16 @@
 package br.com.system.model.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Agencia {
 
@@ -18,40 +24,10 @@ public class Agencia {
     @OneToMany(mappedBy = "numeroAgencia")
     private List<Conta> clientes;
 
-    public Agencia() {}
-
     public Agencia(String nome, String cnpj, String numeroAgencia) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.numeroAgencia = numeroAgencia;
         this.clientes = new ArrayList<>();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getNumeroAgencia() {
-        return numeroAgencia;
-    }
-
-    public void setNumeroAgencia(String numeroAgencia) {
-        this.numeroAgencia = numeroAgencia;
     }
 }

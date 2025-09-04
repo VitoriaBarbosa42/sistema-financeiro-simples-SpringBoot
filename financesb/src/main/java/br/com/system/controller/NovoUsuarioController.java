@@ -1,31 +1,23 @@
 package br.com.system.controller;
 
 import br.com.system.dto.CadastroUsuarioDTO;
-import br.com.system.model.entities.Usuario;
-import br.com.system.repository.UsuarioRepository;
+import br.com.system.dto.RespostaDTO;
+import br.com.system.service.cadastro.CadastroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/usuarios")
-public class
-NovoUsuarioController {
+@RequestMapping("/api")
+public class NovoUsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private CadastroService service;
 
-    @PostMapping
-    public ResponseEntity<Usuario> cadastrarUsuario(@Valid @RequestBody CadastroUsuarioDTO cadastroUsuarioDto) {
-        Usuario usuario = new Usuario();
-        usuario.setNome(cadastroUsuarioDto.getNome());
-        usuario.setSobrenome(cadastroUsuarioDto.getSobrenome());
-        usuario.setCpf(cadastroUsuarioDto.getCpf());
-        usuario.setEmail(cadastroUsuarioDto.getEmail());
-
-        Usuario novoUsuario = usuarioRepository.save(usuario);
-        return ResponseEntity.ok(novoUsuario);
-
+    @PostMapping("/cadastrar")
+    public ResponseEntity<RespostaDTO> cadastrar(@Valid @RequestBody CadastroUsuarioDTO cadastro){
+        var resposta = service.cadastrarUsuario(cadastro);
+        return ResponseEntity.ok(resposta);
     }
 }
