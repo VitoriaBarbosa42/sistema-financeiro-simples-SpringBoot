@@ -18,16 +18,22 @@ public class Agencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String nome;
+
+    @Column(nullable = false, length = 14, unique = true)
     private String cnpj;
+
+    @Column(nullable = false, unique = true)
     private String numeroAgencia;
+
+    @Column(nullable = false, length = 20, unique = false)
+    private String senha;
+
     @OneToMany(mappedBy = "numeroAgencia")
     private List<Conta> clientes;
 
-    public Agencia(String nome, String cnpj, String numeroAgencia) {
-        this.nome = nome;
-        this.cnpj = cnpj;
-        this.numeroAgencia = numeroAgencia;
-        this.clientes = new ArrayList<>();
-    }
+    @OneToMany(mappedBy = "agencia")
+    private List<Funcionario> funcionarios;
+
 }
