@@ -27,7 +27,7 @@ public class Agencia {
     @Column(nullable = false, unique = true)
     private String numeroAgencia;
 
-    @Column(nullable = false, length = 20, unique = false)
+    @Column(nullable = false, length = 16, unique = false)
     private String senha;
 
     @OneToMany(mappedBy = "numeroAgencia")
