@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // A resposta do servidor foi 200 OK
                 const data = await response.json();
                 showMessage('Login bem-sucedido! Redirecionando...', 'success');
-                // Em um cenário real, você faria o redirecionamento aqui
-                // Exemplo:
+                window.location.href = '/menu/dashboard.html';
                 // window.location.href = '/dashboard';
             } else {
                 // A resposta foi um erro (ex: 401, 404, 500)

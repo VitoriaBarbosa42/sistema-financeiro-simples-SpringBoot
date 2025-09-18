@@ -13,9 +13,7 @@ public class LoginAgenciaService{
 
     public Boolean login(LoginAgenciaRequisicaoDTO loginAgendaDTO) {
         var agencia = loginAgenciaRepository.findByNumeroAgencia(loginAgendaDTO.getNumeroAgencia());
-        if(agencia == null) {
-            return false;
-        } else if(!agencia.getSenha().equals(loginAgendaDTO.getSenha())){
+        if(agencia == null || !agencia.getSenha().equals(loginAgendaDTO.getSenha())) {
             return false;
         }
         return true;

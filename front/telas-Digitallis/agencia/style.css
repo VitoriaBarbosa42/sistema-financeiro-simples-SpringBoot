@@ -49,7 +49,7 @@ header {
     margin-left: auto;
     margin-right: auto;
     /* Use background-image para carregar a imagem */
-    background-image: url('logo.png'); /* Caminho para sua imagem do logo */
+    background-image: url('/static/logo.png'); /* Caminho para sua imagem do logo */
     background-size: cover; /* Ajusta a imagem para cobrir todo o container */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Evita que a imagem se repita */

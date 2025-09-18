@@ -17,7 +17,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function(eve
         email: email
     };
 
-    fetch('http://localhost:8080/api/usuarios', {
+    fetch('http://localhost:8080/api/cadastrar', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
