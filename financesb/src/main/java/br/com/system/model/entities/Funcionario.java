@@ -25,6 +25,8 @@ public class Funcionario {
     private String matricula;
     @Column(nullable = false, length = 16)
     private String senha;
+
     @ManyToOne
+    @JoinColumn(name = "id_agencia")
     private Agencia agencia;
 }

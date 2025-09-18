@@ -1,7 +1,7 @@
 package br.com.system.service.cadastro;
 
 import br.com.system.dto.CadastroUsuarioDTO;
-import br.com.system.dto.RespostaDTO;
+import br.com.system.dto.ResponseCadastroClienteDTO;
 import br.com.system.model.entities.Usuario;
 import br.com.system.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,9 @@ public class CadastroService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public RespostaDTO cadastrarUsuario(CadastroUsuarioDTO cadastroUsuarioDto) {
+    public ResponseCadastroClienteDTO cadastrarUsuario(CadastroUsuarioDTO cadastroUsuarioDto) {
 
-        RespostaDTO resposta;
+        ResponseCadastroClienteDTO resposta;
 
         Usuario usuario = new Usuario();
         usuario.setNome(cadastroUsuarioDto.getNome());
@@ -24,7 +24,7 @@ public class CadastroService {
         usuario.setEmail(cadastroUsuarioDto.getEmail());
 
         Usuario novoUsuario = usuarioRepository.save(usuario);
-        resposta = new RespostaDTO(novoUsuario.getNome(), novoUsuario.getEmail());
+        resposta = new ResponseCadastroClienteDTO(novoUsuario.getNome(), novoUsuario.getEmail());
         return resposta;
     }
 

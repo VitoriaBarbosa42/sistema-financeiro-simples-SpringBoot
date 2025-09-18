@@ -1,7 +1,7 @@
 package br.com.system.controller;
 
 import br.com.system.dto.CadastroUsuarioDTO;
-import br.com.system.dto.RespostaDTO;
+import br.com.system.dto.ResponseCadastroClienteDTO;
 import br.com.system.service.cadastro.CadastroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class NovoUsuarioController {
     private CadastroService service;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<RespostaDTO> cadastrar(@Valid @RequestBody CadastroUsuarioDTO cadastro){
+    public ResponseEntity<ResponseCadastroClienteDTO> cadastrar(@Valid @RequestBody CadastroUsuarioDTO cadastro){
         var resposta = service.cadastrarUsuario(cadastro);
         return ResponseEntity.ok(resposta);
     }

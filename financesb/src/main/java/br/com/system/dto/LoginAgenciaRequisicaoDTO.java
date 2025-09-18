@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class LoginAgenciaDTO {
+public class LoginAgenciaRequisicaoDTO {
 
     @NotBlank(message = "O campo não pode estar vazio")
     @JsonProperty("agencia")

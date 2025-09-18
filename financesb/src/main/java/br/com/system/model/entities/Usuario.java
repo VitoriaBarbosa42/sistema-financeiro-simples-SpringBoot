@@ -3,11 +3,13 @@ package br.com.system.model.entities;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class Usuario{
 
     @Id
@@ -26,8 +28,6 @@ public class Usuario{
 
     @Column(unique = true)
     private String email;
-
-    public Usuario() {}
 
     public Usuario(String nome, String sobrenome, String cpf, String email) {
         this.nome = nome;

@@ -24,6 +24,7 @@ public class Transacoes {
     private Double valor;
 
     @ManyToOne
+    @JoinColumn(name = "id_conta")
     private Conta conta;
 
     public Transacoes(Double valor) {

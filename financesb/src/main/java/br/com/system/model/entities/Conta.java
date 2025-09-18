@@ -21,10 +21,12 @@ public class Conta {
     private Long id;
 
     @OneToOne
+    @PrimaryKeyJoinColumn(name = "id_usuario")
     private Usuario pessoa;
 
     @ManyToOne
-    private Agencia numeroAgencia;
+    @JoinColumn(name = "id_agencia")
+    private Agencia agencia;
 
     private String numeroConta;
 
@@ -35,7 +37,7 @@ public class Conta {
 
     public Conta(Usuario pessoa, Agencia numeroAgencia, String numeroConta) {
         this.pessoa = pessoa;
-        this.numeroAgencia = numeroAgencia;
+        this.agencia = numeroAgencia;
         this.numeroConta = numeroConta;
         this.transacaoes = new ArrayList<>();
     }
