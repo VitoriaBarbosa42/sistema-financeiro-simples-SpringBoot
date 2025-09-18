@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitalis Bank - Dashboard</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background-color: #1E1E1E;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .logo-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #FF5722;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .bank-name {
+            font-size: 2em;
+            font-weight: bold;
+            color: #FF5722;
+            margin-top: 5px;
+        }
+        
+        .sub-title {
+            font-size: 1.1em;
+            color: #B0B0B0;
+            margin-top: 1px;
+        }
+
+        .menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .menu-button {
+            background-color: #C25900; /* Laranja escuro para o botão */
+            color: #E0E0E0;
+            border: none;
+            padding: 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .menu-button:hover {
+            background-color: #FF5722; /* Laranja mais claro quando o mouse está sobre o botão */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Logo Digitalis Bank" class="logo-image">
+            <div class="bank-name">Digitalis Bank</div>
+            <div class="sub-title">Sistema Interno</div>
+        </div>
+        
+        <div class="menu-options">
+            <a href="#" class="menu-button">Cadastrar novo Cliente</a>
+            <a href="#" class="menu-button">Consultar clientes</a>
+            <a href="#" class="menu-button">Dados da agência</a>
+            <a href="#" class="menu-button">Consultar funcionários</a>
+        </div>
+    </div>
+</body>
+</html>

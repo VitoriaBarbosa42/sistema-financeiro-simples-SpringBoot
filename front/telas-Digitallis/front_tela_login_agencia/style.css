@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-orange: #FF8C00; /* Laranja escuro */
+    --secondary-orange: #FFA500; /* Laranja padrão */
+    --dark-grey: #333333;
+    --black: #000000;
+    --white: #ffffff;
+    --light-grey: #f4f4f4;
+    --error-red: #e74c3c;
+    --success-green: #2ecc71;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, var(--black), var(--dark-grey));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--light-grey);
+}
+
+/* Garanta que o .login-container tenha a borda */
+.login-container {
+    background-color: var(--black);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    /* A borda já estava aqui, mas é bom verificar */
+    border: 1px solid var(--primary-orange);
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* Use background-image para carregar a imagem */
+    background-image: url('logo.png'); /* Caminho para sua imagem do logo */
+    background-size: cover; /* Ajusta a imagem para cobrir todo o container */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    border: 2px solid var(--primary-orange); /* Adiciona uma borda laranja ao círculo */
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.5); /* Sombra para destacar a borda */
+}
+
+
+h1 {
+    color: var(--primary-orange);
+    margin: 0 0 5px 0;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+h2 {
+    color: var(--secondary-orange);
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--dark-grey);
+    border-radius: 5px;
+    background-color: var(--dark-grey);
+    color: var(--white);
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: var(--primary-orange);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.3);
+}
+
+button {
+    background-color: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: var(--secondary-orange);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    display: none; /* Escondido por padrão */
+}
+
+.message.error {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: var(--error-red);
+    display: block;
+}
+
+.message.success {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: var(--success-green);
+    display: block;
+}
+
+/* Responsividade básica */
+@media (max-width: 500px) {
+    .login-container {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+}

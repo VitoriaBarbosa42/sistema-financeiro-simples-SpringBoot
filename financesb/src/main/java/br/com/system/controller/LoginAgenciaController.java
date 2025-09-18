@@ -18,13 +18,8 @@ public class LoginAgenciaController {
 
     @PostMapping("/login/agencia")
     public ResponseEntity<AgenciaLoginRespontaDTO> login(@Valid @RequestBody LoginAgenciaRequisicaoDTO loginAgenciaDTO){
-        Boolean loginSucesso = loginService.login(loginAgenciaDTO);
-
-        if(loginSucesso == false) {
-            AgenciaLoginRespontaDTO response = new AgenciaLoginRespontaDTO("Agência ou senha incorretos.");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-        }
-        AgenciaLoginRespontaDTO response = new AgenciaLoginRespontaDTO("Login bem-sucedido!");
-        return ResponseEntity.ok(response);
+        return !loginService.login(loginAgenciaDTO)
+                ? ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AgenciaLoginRespontaDTO("Agência ou senha incorretos."))
+                : ResponseEntity.ok(new AgenciaLoginRespontaDTO("Login bem-sucedido!"));
     }
 }
