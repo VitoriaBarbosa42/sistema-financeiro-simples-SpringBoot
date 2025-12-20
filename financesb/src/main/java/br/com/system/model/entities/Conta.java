@@ -34,7 +34,6 @@ public class Conta {
 
     @ManyToOne
     @JoinColumn(name = "id_transacoes")
-    @Column(unique = true)
     private Transacoes transacoes;
 
 
