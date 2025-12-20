@@ -1,0 +1,70 @@
+
+create table agencia (
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(40) NOT NULL,
+	cnpj VARCHAR(14) NOT NULL,
+	numeroagencia VARCHAR(5) NOT NULL,
+	senha VARCHAR(16) NOT NULL
+)
+
+ALTER TABLE agencia
+ADD CONSTRAINT unq_cnpj_numeroagencia UNIQUE (cnpj, numeroagencia);
+
+ALTER TABLE agencia
+ADD COLUMN funcionarios_id INT NOT NULL UNIQUE
+
+ALTER TABLE agencia
+ADD CONSTRAINT fk_funcionarios_em_agencia
+FOREIGN KEY (funcionarios_id)
+REFERENCES funcionario (id)
+
+ALTER TABLE agencia
+ADD COLUMN conta_id INT NOT NULL UNIQUE
+
+ALTER TABLE agencia
+ADD CONSTRAINT fk_conta_em_agencia
+FOREIGN KEY (conta_id)
+REFERENCES conta (id)
+
+create table usuario (
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(40) NOT NULL,
+	sobrenome VARCHAR(40) NOT NULL,
+	cpf VARCHAR(11) NOT NULL,
+	email VARCHAR(40) NOT NULL
+)
+
+ALTER TABLE usuario
+ADD CONSTRAINT unq_cpf_email UNIQUE (cpf, email);
+
+create table funcionario (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(40) NOT NULL,
+	namecompleto VARCHAR(40) NOT NULL,
+	matricula VARCHAR(40) NOT NULL UNIQUE,
+	senha VARCHAR(16) NOT NULL
+)
+
+CREATE TABLE transacoes (
+	id serial PRIMARY KEY,
+	data_evento TIMESTAMPTZ NOT NULL,
+	valor NUMERIC(30,2)
+)
+
+CREATE TABLE conta (
+	id serial PRIMARY KEY,
+	id_usuario int not null,
+	id_agencia int not null,
+	numeroconta VARCHAR(12) UNIQUE not null,
+	saldo NUMERIC(30,2),
+	id_transacoes int unique not null,
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+	FOREIGN KEY (id_agencia) REFERENCES agencia(id),
+	FOREIGN KEY (id_transacoes) REFERENCES transacoes(id)
+)
+
+SELECT * FROM FUNCIONARIO;
+SELECT * FROM agencia;
+SELECT * FROM conta;
+SELECT * FROM transacoes;
+SELECT * FROM usuario;
