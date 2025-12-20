@@ -24,7 +24,7 @@ public class Conta {
     @PrimaryKeyJoinColumn(name = "id_usuario")
     private Usuario pessoa;
 
-    @ManyToOne
+    @OneToOne(mappedBy = "conta")
     @JoinColumn(name = "id_agencia")
     private Agencia agencia;
 
@@ -32,13 +32,16 @@ public class Conta {
 
     private Double saldo = 0.0;
 
-    @OneToMany(mappedBy = "conta")
-    private List<Transacoes> transacaoes;
+    @ManyToOne
+    @JoinColumn(name = "id_transacoes")
+    @Column(unique = true)
+    private Transacoes transacoes;
 
-    public Conta(Usuario pessoa, Agencia numeroAgencia, String numeroConta) {
+
+    public Conta(Usuario pessoa, Agencia numeroAgencia, String numeroConta, Transacoes transacaes) {
         this.pessoa = pessoa;
         this.agencia = numeroAgencia;
         this.numeroConta = numeroConta;
-        this.transacaoes = new ArrayList<>();
+        this.transacoes = transacaes;
     }
 }

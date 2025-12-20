@@ -1,0 +1,9 @@
+
+-- Criando a network
+docker network create banksystem-network
+
+-- Criando o conteiner do banco de dados
+docker run --name banksystemdb -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=banksystem -p 5432:5432 -d --network banksystem-network postgres:18.1
+
+-- Criando o conteiner do pgadmin
+docker run --name pgadmin4 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin -p 15432:80 -d --network banksystem-network dpage/pgadmin4:9.11.0

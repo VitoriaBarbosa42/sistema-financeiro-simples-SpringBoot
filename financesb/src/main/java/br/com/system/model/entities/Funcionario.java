@@ -19,14 +19,16 @@ public class Funcionario {
 
     @Column(nullable = false, unique = true)
     private String username;
-    @Column(nullable = false)
+
+    @Column(name = "nomecompleto", nullable = false)
     private String name;
+
     @Column(nullable = false, unique = true)
     private String matricula;
+
     @Column(nullable = false, length = 16)
     private String senha;
 
-    @ManyToOne
-    @JoinColumn(name = "id_agencia")
+    @OneToOne(mappedBy = "funcionarios")
     private Agencia agencia;
 }

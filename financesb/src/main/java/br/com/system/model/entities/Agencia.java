@@ -30,18 +30,20 @@ public class Agencia {
     @Column(nullable = false, length = 16)
     private String senha;
 
-    @OneToMany(mappedBy = "agencia")
-    private List<Conta> conta;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "conta_id", unique = true)
+    private Conta conta;
 
-    @OneToMany(mappedBy = "agencia")
-    private List<Funcionario> funcionarios;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "funcionarios_id", unique = true)
+    private Funcionario funcionarios;
 
-    public Agencia(String nome, String numeroAgencia, String cnpj, String senha) {
+    public Agencia(String nome, String numeroAgencia, String cnpj, String senha, Funcionario funcionarios, Conta conta) {
         this.nome = nome;
         this.numeroAgencia = numeroAgencia;
         this.cnpj = cnpj;
         this.senha = senha;
-        this.conta = new ArrayList<>();
-        this.funcionarios = new ArrayList<>();
+        this.conta = conta;
+        this.funcionarios = funcionarios;
     }
 }
