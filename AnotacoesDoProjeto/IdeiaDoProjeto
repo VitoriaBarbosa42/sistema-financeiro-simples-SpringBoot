@@ -1,0 +1,8 @@
+O projeto consiste em um sistema de cadastro e gerenciamento de clientes. Ele contará com uma tela de login para
+autenticação do usuário, uma tela de cadastro de clientes e outras telas com informações sobre clientes, agência
+e funcionários.
+
+Na agência, haverá dois tipos de usuários:
+
+Gerente: terá permissões administrativas, podendo consultar e manipular os dados e a conta do cliente.
+Atendente: terá permissão apenas para cadastrar novos clientes e alterar seus dados, sem acesso à conta do cliente.

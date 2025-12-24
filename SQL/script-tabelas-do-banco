@@ -1,55 +1,40 @@
-
-create table agencia (
+create table inf_agenci (
 	id SERIAL PRIMARY KEY,
 	nome VARCHAR(40) NOT NULL,
-	cnpj VARCHAR(14) NOT NULL,
-	numeroagencia VARCHAR(5) NOT NULL,
-	senha VARCHAR(16) NOT NULL
-)
+	cnpj VARCHAR(14) NOT NULL UNIQUE,
+	numeroagencia VARCHAR(5) NOT NULL UNIQUE,
+);
 
-ALTER TABLE agencia
-ADD CONSTRAINT unq_cnpj_numeroagencia UNIQUE (cnpj, numeroagencia);
+select * from inf_agencia;
 
-ALTER TABLE agencia
-ADD COLUMN funcionarios_id INT NOT NULL UNIQUE
-
-ALTER TABLE agencia
-ADD CONSTRAINT fk_funcionarios_em_agencia
-FOREIGN KEY (funcionarios_id)
-REFERENCES funcionario (id)
-
-ALTER TABLE agencia
-ADD COLUMN conta_id INT NOT NULL UNIQUE
-
-ALTER TABLE agencia
-ADD CONSTRAINT fk_conta_em_agencia
-FOREIGN KEY (conta_id)
-REFERENCES conta (id)
-
-create table usuario (
+create table usuario_inf (
 	id SERIAL PRIMARY KEY,
 	nome VARCHAR(40) NOT NULL,
 	sobrenome VARCHAR(40) NOT NULL,
-	cpf VARCHAR(11) NOT NULL,
-	email VARCHAR(40) NOT NULL
-)
+	cpf VARCHAR(11) NOT NULL UNIQUE,
+	email VARCHAR(40) NOT NULL UNIQUE
+);
 
-ALTER TABLE usuario
-ADD CONSTRAINT unq_cpf_email UNIQUE (cpf, email);
+select * from usuario_inf;
 
 create table funcionario (
 	id SERIAL PRIMARY KEY,
-	username VARCHAR(40) NOT NULL,
 	namecompleto VARCHAR(40) NOT NULL,
 	matricula VARCHAR(40) NOT NULL UNIQUE,
-	senha VARCHAR(16) NOT NULL
-)
+	user_id int UNIQUE,
+	FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+select * from funcionario;
 
 CREATE TABLE transacoes (
 	id serial PRIMARY KEY,
 	data_evento TIMESTAMPTZ NOT NULL,
-	valor NUMERIC(30,2)
-)
+	valor NUMERIC(30,2),
+	conta_id int not null
+);
+
+select * from transacoes;
 
 CREATE TABLE conta (
 	id serial PRIMARY KEY,
@@ -58,13 +43,18 @@ CREATE TABLE conta (
 	numeroconta VARCHAR(12) UNIQUE not null,
 	saldo NUMERIC(30,2),
 	id_transacoes int unique not null,
-	FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-	FOREIGN KEY (id_agencia) REFERENCES agencia(id),
-	FOREIGN KEY (id_transacoes) REFERENCES transacoes(id)
-)
+	FOREIGN KEY (id_usuario) REFERENCES usuario_inf(id),
+	FOREIGN KEY (id_agencia) REFERENCES inf_agencia(id)
+);
 
-SELECT * FROM FUNCIONARIO;
-SELECT * FROM agencia;
-SELECT * FROM conta;
-SELECT * FROM transacoes;
-SELECT * FROM usuario;
+select * from conta;
+
+
+create TABLE users (
+	id serial PRIMARY key,
+	login text not null unique,
+	senha text not null,
+	regras text not null
+);
+
+select * from users;
