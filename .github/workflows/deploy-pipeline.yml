@@ -1,0 +1,84 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches:
+      - develop
+      - hom
+      - main
+  pull_request:
+    branches:
+      - develop
+      - hom
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    name: Build and Test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: |
+          cd financesb
+          mvn clean package
+
+      - name: Run Tests
+        run: |
+          cd financesb
+          mvn test
+
+      - name: Generate JavaDoc
+        run: |
+          cd financesb
+          mvn javadoc:javadoc
+
+  notify-dev:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    name: Dev Environment Ready
+
+    steps:
+      - name: Dev Deployment Success
+        run: echo "✅ Código em develop está pronto para homologação!"
+
+  notify-hom:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/hom'
+    name: Homologation Environment Ready
+
+    steps:
+      - name: Hom Deployment Success
+        run: echo "✅ Código em hom está pronto para produção!"
+
+  notify-prod:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    name: Production Environment Ready
+
+    steps:
+      - name: Prod Deployment Success
+        run: echo "✅ Código em main foi para produção!"
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release v${{ github.run_number }}
+          body: Automatic release from main branch
+          draft: false
+          prerelease: false
