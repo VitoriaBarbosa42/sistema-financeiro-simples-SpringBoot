@@ -1,4 +1,4 @@
-package br.com.system.service.cadastro;
+package br.com.system.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
