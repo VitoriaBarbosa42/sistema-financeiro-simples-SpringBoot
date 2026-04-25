@@ -37,48 +37,52 @@ jobs:
           cd financesb
           mvn test
 
-      - name: Generate JavaDoc
-        run: |
-          cd financesb
-          mvn javadoc:javadoc
-
-  notify-dev:
+  dev-environment:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
     name: Dev Environment Ready
 
     steps:
-      - name: Dev Deployment Success
-        run: echo "✅ Código em develop está pronto para homologação!"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  notify-hom:
+      - name: Dev Deployment Success
+        run: echo "✅ Código em develop está pronto! Crie um PR para hom"
+
+  hom-environment:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/hom'
-    name: Homologation Environment Ready
+    name: Hom Environment Ready
 
     steps:
-      - name: Hom Deployment Success
-        run: echo "✅ Código em hom está pronto para produção!"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  notify-prod:
+      - name: Hom Deployment Success
+        run: echo "✅ Código em hom está pronto! Crie um PR para main"
+
+  prod-environment:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    name: Production Environment Ready
+    name: Prod Environment Ready
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Prod Deployment Success
         run: echo "✅ Código em main foi para produção!"
 
       - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ github.run_number }}
           release_name: Release v${{ github.run_number }}
           body: Automatic release from main branch
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
